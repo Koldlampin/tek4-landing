@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tek4 — IT Services for St. Louis Small Businesses</title>
+  <meta name="description" content="tek4 provides honest, practical IT services for St. Louis small businesses. No upsells, no complexity theater — just technology that fits your business.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1114;
+      --surface: #181b20;
+      --border: #2a2e35;
+      --text: #e2e4e8;
+      --text-muted: #8a8f98;
+      --accent: #3b82f6;
+      --accent-dim: rgba(59, 130, 246, 0.12);
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 17, 20, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-contact {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-contact:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: var(--accent-dim);
+    }
+
+    /* --- HERO --- */
+    .hero-wrapper {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('hero-bg.jpg') center bottom / cover no-repeat;
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        var(--bg) 0%,
+        transparent 30%,
+        transparent 60%,
+        var(--bg) 100%
+      );
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--sans);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+      background: var(--surface);
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+    }
+
+    /* --- WHAT WE DO --- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--text-muted);
+    }
+
+    .service-card h3 {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* --- STRAIGHT TALK --- */
+    .talk-block {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      padding: 2rem 2.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 1.5rem;
+    }
+
+    .talk-block p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .talk-block p + p {
+      margin-top: 1rem;
+    }
+
+    .talk-block strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* --- CONTACT --- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .contact-item .label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-item a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover { color: var(--accent); }
+
+    .contact-item .value {
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .site-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+
+      .hero { padding: 7rem 1.25rem 3rem; min-height: auto; }
+
+      section { padding: 3.5rem 1.25rem; }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .hero-cta .btn {
+        text-align: center;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .talk-block {
+        padding: 1.5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo"><img src="logo.png" alt="tek4"></a>
+    <a href="#contact" class="nav-contact">Get in touch</a>
+  </nav>
+
+  <main>
+    <div class="hero-wrapper">
+      <div class="hero-bg"></div>
+      <div class="hero">
+        <div class="hero-label">IT services — St. Louis</div>
+        <h1>Your business needs technology that works, not technology that impresses your IT guy.</h1>
+        <p>tek4 provides IT services for St. Louis small businesses — the ones with 5 to 70 computers, no internal IT department, and no patience for overengineered nonsense. We've been doing this for over 20 years.</p>
+        <div class="hero-cta">
+          <a href="mailto:info@tek4.org" class="btn btn-primary">Email Us</a>
+          <a href="tel:+13142261720" class="btn btn-secondary">Call Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section>
+      <div class="section-label">What we do</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>IT support & management</h3>
+          <p>Day-to-day tech support, troubleshooting, and system management. We keep things running so you don't have to think about it.</p>
+        </div>
+        <div class="service-card">
+          <h3>Network & infrastructure</h3>
+          <p>Wi-Fi, firewalls, servers, cloud setup. Built for your actual office — not a hypothetical enterprise campus.</p>
+        </div>
+        <div class="service-card">
+          <h3>Technology planning</h3>
+          <p>Honest guidance on what to buy, what to skip, and when to upgrade. We'll tell you when the answer is "do nothing."</p>
+        </div>
+        <div class="service-card">
+          <h3>Vendor wrangling</h3>
+          <p>We deal with your software vendors, ISPs, and hardware suppliers so you don't have to sit on hold or decode their jargon.</p>
+        </div>
+        <div class="service-card">
+          <h3>Office technology</h3>
+          <p>New office buildouts, moves, upgrades. Printers, phones, conference rooms — the unglamorous stuff that matters.</p>
+        </div>
+        <div class="service-card">
+          <h3>Security & compliance</h3>
+          <p>Practical security that fits a small business budget. Not fear-based upselling — real protection for real threats.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <div class="section-label">Straight talk</div>
+      <div class="talk-block">
+        <p>Most IT companies make money by making things complicated. More complexity means more billable hours, more licenses to manage, more reasons you need them.</p>
+        <p><strong>We do the opposite.</strong> We build systems that are as simple as they can be and only as complex as they need to be. We'll recommend the cheaper option when it's the right one. We'll tell you when something isn't worth fixing. We won't push a $40,000 server on a business that needs a $400 NAS.</p>
+        <p>We bill at a flat hourly rate, explain what we're doing in plain English, and we've been serving St. Louis businesses since the early 2000s. That's the whole pitch.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="contact">
+      <div class="section-label">Get in touch</div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="label">Email</div>
+          <a href="mailto:info@tek4.org">info@tek4.org</a>
+        </div>
+        <div class="contact-item">
+          <div class="label">Phone</div>
+          <a href="tel:+13142261720">(314) 226-1720</a>
+        </div>
+        <div class="contact-item">
+          <div class="label">Service area</div>
+          <div class="value">St. Louis metro + remote</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 tek4.org</p>
+    <p class="site-note">Full site coming soon.</p>
+  </footer>
+
+</body>
+</html>
